@@ -190,16 +190,15 @@ class StartupManager:
         
         # Get the full path to the executable or script
         if getattr(sys, 'frozen', False):
+            # If running as compiled executable
             self.app_path = f'"{sys.executable}"'
         else:
-            self.app_path = f'"{sys.executable}" "{os.path.abspath(__file__)}"'
+            # If running as Python script, use pythonw.exe instead of python.exe
+            python_path = sys.executable.replace('python.exe', 'pythonw.exe')
+            script_path = os.path.abspath("hiki_bridge.py")  # Explicitly use the GUI script
+            self.app_path = f'"{python_path}" "{script_path}"'
 
-        # Set platform-specific startup path
-        if sys.platform == 'win32':
-            self.key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
-        else:
-            # Linux startup file path
-            self.startup_file = Path.home() / '.config/autostart/hikibridge.desktop'
+        self.key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
 
     def enable_startup(self) -> bool:
         if sys.platform == 'win32':
