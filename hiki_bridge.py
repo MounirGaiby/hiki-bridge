@@ -335,6 +335,7 @@ class HikiBridgeApp(QMainWindow):
 
         # Auto-start checkbox
         self.auto_start = QCheckBox('Auto-start monitoring')
+        self.auto_start.stateChanged.connect(self.auto_start_changed)
         layout.addWidget(self.auto_start)
 
         # Add Windows startup checkbox and verify button in a horizontal layout
@@ -524,6 +525,12 @@ class HikiBridgeApp(QMainWindow):
         except Exception as e:
             self.status_display.append(f"✗ Error verifying startup: {str(e)}")
             return False
+
+    def auto_start_changed(self, state):
+        """Save config whenever auto-start is toggled"""
+        self.save_config()
+        is_enabled = "enabled" if state == Qt.CheckState.Checked.value else "disabled"
+        self.status_display.append(f"Auto-start {is_enabled} and saved to config")
 
 def main():
     app = QApplication(sys.argv)

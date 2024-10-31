@@ -51,3 +51,7 @@ dmypy.json
 
 # pytest
 .pytest_cache/
+
+# config.json
+config.json
+
