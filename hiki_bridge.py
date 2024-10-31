@@ -379,8 +379,10 @@ class HikiBridgeApp(QMainWindow):
         self.folder_path.setText(config.folder_path)
         self.auto_start.setChecked(config.auto_start)
         
-        # Set Windows startup checkbox based on actual registry state
+        # Silently set Windows startup checkbox based on actual registry state
+        self.windows_startup.blockSignals(True)  # Prevent triggering the change event
         self.windows_startup.setChecked(self.startup_manager.is_enabled())
+        self.windows_startup.blockSignals(False)  # Re-enable signals
 
     def save_config(self):
         config = AppConfig(
