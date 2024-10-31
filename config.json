@@ -1,1 +1,1 @@
-{"api_endpoint": "http://localhost:3000/api/v1/clock_entries/bulk_create", "api_key": "rMXaXQZNQhc4hcbSnZQfc8N4", "folder_path": "C:/Users/m.gaiby/Desktop/Test", "auto_start": false, "windows_startup": true}
+{"api_endpoint": "http://localhost:3000/api/v1/clock_entries/bulk_create", "api_key": "rMXaXQZNQhc4hcbSnZQfc8N4", "folder_path": "C:/Users/m.gaiby/Desktop/Test", "auto_start": true, "windows_startup": false}

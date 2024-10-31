@@ -370,6 +370,11 @@ class HikiBridgeApp(QMainWindow):
         self.stop_btn.setEnabled(False)
         button_layout.addWidget(self.stop_btn)
         
+        # Add clear console button
+        self.clear_btn = QPushButton('Clear Console')
+        self.clear_btn.clicked.connect(self.clear_console)
+        button_layout.addWidget(self.clear_btn)
+        
         layout.addLayout(button_layout)
 
     def load_config(self):
@@ -533,6 +538,10 @@ class HikiBridgeApp(QMainWindow):
         self.save_config()
         is_enabled = "enabled" if state == Qt.CheckState.Checked.value else "disabled"
         self.status_display.append(f"Auto-start {is_enabled} and saved to config")
+
+    def clear_console(self):
+        """Clear the status display"""
+        self.status_display.clear()
 
 def main():
     app = QApplication(sys.argv)
